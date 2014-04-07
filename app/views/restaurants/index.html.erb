@@ -1,7 +1,16 @@
+<h1>Yelp-Clone</h1>
 <% if @restaurants.count == 0 %>
-  No restaurants yet
+  <div id="no-restauraunts">
+    No restaurants yet
+  </div>
 <% end %>
 <% @restaurants.each do |restaurant| %>
-  <%= restaurant.name %>
+  <div class="restauraunt">
+    <%= restaurant.name %>
+    <%= link_to "Edit", edit_restaurant_path(restaurant) %>
+    <%= link_to "Delete", restaurant_path(restaurant), method: :delete %>
+  </div>
 <% end %>
-<%= link_to "Add a restaurant", new_restaurant_path  %>
+<div id="add-restaurant">
+  <%= link_to "Add a restaurant", new_restaurant_path  %>
+</div>

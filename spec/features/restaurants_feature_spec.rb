@@ -14,10 +14,31 @@ describe 'the restaurants index page' do
       	fill_in "Name", with: "McDonalds"
       	fill_in "Category", with: "Fast food"
       	fill_in "Location", with: "Everywhere"
-      	click_button "Add a restaurant"
+      	click_button "Create Restaurant"
 
       	expect(page).to have_content 'McDonalds'
       end
+    end
+  end
+
+  context "a restaurant has been added" do
+    before(:each) do
+      Restaurant.create(name: 'McDonalds')
+    end
+    it "should edit a restaurant record" do
+      visit '/restaurants'
+      click_link 'Edit'
+      fill_in "Name", with: "Old McDonald"
+      click_button 'Update Restaurant'
+
+      expect(page).to have_content 'Old McDonald'
+    end
+
+    it "should destroy a restaurant record" do
+      visit '/restaurants'
+      click_link 'Delete'
+
+      expect(page).to have_content 'No restaurants yet'
     end
   end
 end
