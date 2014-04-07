@@ -7,6 +7,17 @@ describe 'the restaurants index page' do
       expect(page).to have_content 'No restaurants yet'
     end
 
-    
+    describe "adding a restaurant" do
+      it "should be listed on the index" do
+      	visit '/restaurants'
+      	click_link 'Add a restaurant'
+      	fill_in "Name", with: "McDonalds"
+      	fill_in "Category", with: "Fast food"
+      	fill_in "Location", with: "Everywhere"
+      	click_button "Add a restaurant"
+
+      	expect(page).to have_content 'McDonalds'
+      end
+    end
   end
 end

@@ -1,1 +1,7 @@
-No restaurants yet
+<% if @restaurants.count == 0 %>
+  No restaurants yet
+<% end %>
+<% @restaurants.each do |restaurant| %>
+  <%= restaurant.name %>
+<% end %>
+<%= link_to "Add a restaurant", new_restaurant_path  %>
