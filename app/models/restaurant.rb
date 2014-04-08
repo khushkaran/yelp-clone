@@ -2,7 +2,7 @@ class Restaurant < ActiveRecord::Base
   has_many :reviews
 
   def average_rating
-    return "No reviews" if reviews.length == 0
+    return "N/A" if reviews.length == 0
     reviews.average(:rating).ceil if reviews.average(:rating)
   end
 
