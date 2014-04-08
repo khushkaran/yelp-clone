@@ -1,15 +1,24 @@
 <h1>Yelp-Clone</h1>
 <% if @restaurants.count == 0 %>
-  <div id="no-restauraunts">
+  <div id="no-restaurants">
     No restaurants yet
   </div>
 <% end %>
+<div id="titles">
+  <div>Restaurant Name</div>
+  <div>Rating</div>
+  <div>Last Comment</div>
+  <div>Options</div>
+</div>
 <% @restaurants.each do |restaurant| %>
   <div class="restaurant">
     <div class="name"><%= restaurant.name %></div>
+    <div id="average_rating"><%= restaurant.average_rating %></div>
+    <div id="last_comment"><%= restaurant.last_comment %></div>
     <div class="buttons">
       <%= link_to "Edit", edit_restaurant_path(restaurant) %>
       <%= link_to "Delete", restaurant_path(restaurant), method: :delete %>
+      <%= link_to "Review", new_restaurant_review_path(restaurant) %>
     </div>
   </div>
 <% end %>

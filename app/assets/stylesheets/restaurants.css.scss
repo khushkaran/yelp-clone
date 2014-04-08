@@ -13,6 +13,7 @@ body{
 
 .restaurant div{
   display: inline-block;
+  height: 20px;
 }
 
 .restaurant a{
@@ -28,7 +29,7 @@ body{
 }
 
 .restaurant .name{
-  width: 200px;
+  width: 300px;
   background-color:#e6e6e6;
   text-align: left;
   padding-left: 5px;
@@ -45,3 +46,23 @@ body{
 #add-restaurant a:hover{
   text-decoration: underline;
 }
+
+#no-restaurants{
+  padding-bottom: 10px;
+}
+.restaurant #average_rating{
+  width: 45px;
+}
+.restaurant #last_comment{
+  width: 300px;
+  background-color:#e6e6e6;
+}
+.restaurant .buttons{
+  width: 150px
+}
+
+#titles div{ display: inline-block; }
+#titles div:nth-child(1){ width: 305px;background-color:#e6e6e6;}
+#titles div:nth-child(2){ width: 45px;}
+#titles div:nth-child(3){ width: 300px;background-color:#e6e6e6;}
+#titles div:nth-child(4){ width: 150px;}

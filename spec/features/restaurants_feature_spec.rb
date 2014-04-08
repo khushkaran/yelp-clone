@@ -40,5 +40,21 @@ describe 'the restaurants index page' do
 
       expect(page).to have_content 'No restaurants yet'
     end
+
+    it "should allow a review to be left" do
+      visit '/restaurants'
+      click_link 'Review'
+      fill_in "Comment", with: "Great place!"
+      select "5", from: "Rating"
+      click_button 'Create Review'
+
+      expect(page).to have_css '#average_rating', :text => 5
+    end
+
+    it "should allow the viewing of comments" do
+      Restaurant.first.reviews.create(comment: "Amazing!")
+      visit '/restaurants'
+      expect(page).to have_content 'Amazing!'
+    end
   end
 end
