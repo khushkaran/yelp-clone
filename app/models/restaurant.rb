@@ -8,6 +8,6 @@ class Restaurant < ActiveRecord::Base
 
   def last_comment
     return "" if reviews.length == 0
-    reviews.last.comment
+    reviews.last.comment if reviews.last.comment
   end
 end
