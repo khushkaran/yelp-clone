@@ -10,15 +10,15 @@ describe "Restaurant average_rating" do
 
   context "with 1 rating" do
     it "expect to return 5" do
-      restaurant.reviews.create(rating: 5)
+      restaurant.reviews.create(comment: "hello",rating: 5)
       expect(restaurant.average_rating).to eq 5
     end
   end
 
   context "with 2 ratings" do
     it "expect to return 3" do
-      restaurant.reviews.create(rating: 5)
-      restaurant.reviews.create(rating: 1)
+      restaurant.reviews.create(comment: "hello",rating: 5)
+      restaurant.reviews.create(comment: "hello",rating: 1)
       expect(restaurant.average_rating).to eq 3
     end
   end

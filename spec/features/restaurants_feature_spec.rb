@@ -52,7 +52,7 @@ describe 'the restaurants index page' do
     end
 
     it "should allow the viewing of the last comment" do
-      Restaurant.first.reviews.create(comment: "Amazing!")
+      Restaurant.first.reviews.create(comment: "Amazing!", rating: 5)
       visit '/restaurants'
       expect(page).to have_content 'Amazing!'
     end
