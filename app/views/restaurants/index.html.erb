@@ -21,4 +21,12 @@
     </tr>
   <% end %>
 </table>
+<div class="recent-comments">
+  <% @reviews.each do |review| %>
+    <% this_restaurant = Restaurant.find review.restaurant_id %>
+    <%= review.comment %> -
+    <%= this_restaurant.name %> Created at 
+    <%= review.created_at %><br>
+  <% end %>
+</div>
 <% end %>

@@ -70,7 +70,7 @@ describe 'the restaurants index page' do
 
       it "should display the most recent review on the homepage" do
         visit '/restaurants'
-        expect(page).to have_css '.recent_comments', :text => "Food was OK"
+        expect(page).to have_css '.recent-comments', :text => "Food was OK"
       end
     end
   end
