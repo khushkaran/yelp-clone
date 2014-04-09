@@ -1,5 +1,5 @@
 <h1><%= link_to @restaurant.name, restaurant_path(@restaurant) %></h1>
-<h2>Reviews</h2>
+<h3>Reviews</h3>
 <% if @restaurant.reviews.count == 0 %>
   No ratings yet, be the first to rate <%= link_to @restaurant.name, new_restaurant_review_path(@restaurant) %>.
 <% end %>
