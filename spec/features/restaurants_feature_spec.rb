@@ -23,7 +23,7 @@ describe 'the restaurants index page' do
 
   context "a restaurant has been added" do
     before(:each) do
-      Restaurant.create(name: 'McDonalds')
+      @restaurant = Restaurant.create(name: 'McDonalds')
     end
     it "should edit a restaurant record" do
       visit '/restaurants'
@@ -51,10 +51,23 @@ describe 'the restaurants index page' do
       expect(page).to have_css '#average_rating', :text => 5
     end
 
-    it "should allow the viewing of comments" do
+    it "should allow the viewing of the last comment" do
       Restaurant.first.reviews.create(comment: "Amazing!")
       visit '/restaurants'
       expect(page).to have_content 'Amazing!'
     end
+    
+    context "with reviews posted" do
+      before do
+        @restaurant.reviews.create(rating: 3, comment: 'Food was OK')
+      end
+
+      it "individual restaurants display the reviews" do
+        visit '/restaurants'
+        click_link "McDonalds"
+        expect(page).to have_content "Food was OK"
+      end
+    end
   end
+
 end
