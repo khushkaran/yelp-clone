@@ -11,11 +11,7 @@
   <% @restaurants.each do |restaurant| %>
     <tr>
       <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-      <td id="average_rating">
-      <% if restaurant.average_rating != "N/A" %>
-        <%= restaurant.average_rating %>/5
-      <% end %>
-      </td>
+      <td id="average_rating"><%= render partial: 'shared/star_rating', locals: {restaurant: restaurant} %></td>
       <td><%= restaurant.last_comment %></td>
       <td><div class="btn-group">
         <%= link_to "Edit", edit_restaurant_path(restaurant), {class: "btn btn-default"} %>
