@@ -48,7 +48,7 @@ describe 'the restaurants index page' do
       select "5", from: "Rating"
       click_button 'Create Review'
 
-      expect(page).to have_css '#average_rating', :text => 5
+      expect(page).to have_css '.average_rating span', :count => 5
     end
 
     it "should allow the viewing of the last comment" do
@@ -66,6 +66,11 @@ describe 'the restaurants index page' do
         visit '/restaurants'
         click_link "McDonalds"
         expect(page).to have_content "Food was OK"
+      end
+
+      it "should display the most recent review on the homepage" do
+        visit '/restaurants'
+        expect(page).to have_css '.recent_comments', :text => "Food was OK"
       end
     end
   end
