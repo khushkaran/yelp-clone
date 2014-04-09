@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, presence: true
 
   def average_rating
-    return "N/A" if reviews.length == 0
+    return 0 if reviews.length == 0
     reviews.average(:rating).ceil if reviews.average(:rating)
   end
 

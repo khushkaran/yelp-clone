@@ -4,7 +4,7 @@ describe "Restaurant average_rating" do
   let(:restaurant) { Restaurant.create(name: 'McDonalds') } 
   context "with no ratings" do
     it "expect to return no reviews" do
-      expect(restaurant.average_rating).to eq "N/A" 
+      expect(restaurant.average_rating).to eq 0 
     end
   end
 
