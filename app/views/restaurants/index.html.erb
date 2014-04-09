@@ -1,34 +1,24 @@
-<div class="wrapper">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <a class="navbar-brand" href="#">Yelp-Clone</a>
-    <ul class="nav navbar-nav">
-      <li><%= link_to "Add a restaurant", new_restaurant_path  %></li>
-    </ul>
-  </nav>
-
-  <% if @restaurants.count == 0 %>
-    <div id="no-restaurants">
-      No restaurants yet
-    </div>
-  <% else %>
-  <table class="table table-hover">
-    <th>Restaurant Name</th>
-    <th>Rating</th>
-    <th>Last Comment</th>
-    <th>Options</th>
-    <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
-        <td id="average_rating"><%= restaurant.average_rating %></td>
-        <td><%= restaurant.last_comment %></td>
-        <td><div class="btn-group">
-          <%= link_to "Edit", edit_restaurant_path(restaurant), {class: "btn btn-default"} %>
-          <%= link_to "Delete", restaurant_path(restaurant), {class: "btn btn-default", method: :delete} %>
-          <%= link_to "Review", new_restaurant_review_path(restaurant), {class: "btn btn-default"} %>
-        </div></td>
-      </tr>
-    <% end %>
-  </table>
+<% if @restaurants.count == 0 %>
+  <div id="no-restaurants">
+    No restaurants yet
+  </div>
+<% else %>
+<table class="table table-hover">
+  <th>Restaurant Name</th>
+  <th>Rating</th>
+  <th>Last Comment</th>
+  <th>Options</th>
+  <% @restaurants.each do |restaurant| %>
+    <tr>
+      <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
+      <td id="average_rating"><%= restaurant.average_rating %>/5</td>
+      <td><%= restaurant.last_comment %></td>
+      <td><div class="btn-group">
+        <%= link_to "Edit", edit_restaurant_path(restaurant), {class: "btn btn-default"} %>
+        <%= link_to "Delete", restaurant_path(restaurant), {class: "btn btn-default", method: :delete} %>
+        <%= link_to "Review", new_restaurant_review_path(restaurant), {class: "btn btn-default"} %>
+      </div></td>
+    </tr>
   <% end %>
-
-</div>
+</table>
+<% end %>
