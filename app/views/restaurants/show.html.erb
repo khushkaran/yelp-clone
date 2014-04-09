@@ -1,4 +1,4 @@
-<h1><%= @restaurant.name %></h1>
+<h1><%= link_to @restaurant.name, restaurant_path(@restaurant) %></h1>
 <h2>Reviews</h2>
 <% @restaurant.reviews.each do |review| %>
   <%= review.comment %> - <%= review.rating %>/5
