@@ -47,3 +47,20 @@ describe "Restaurant last_comment" do
     end
   end
 end
+
+describe 'validations' do
+  context "these fields are required" do
+    it "restaurant name" do
+      restaurant = Restaurant.new(name: nil)
+      expect(restaurant).to have(1).errors_on(:name)
+    end
+    xit "restaurant location" do
+      restaurant = Restaurant.new(location: nil)
+      expect(restaurant).to have(1).errors_on(:location)
+    end
+    xit "restaurant category" do
+      restaurant = Restaurant.new(category: nil)
+      expect(restaurant).to have(1).errors_on(:category)
+    end
+  end
+end

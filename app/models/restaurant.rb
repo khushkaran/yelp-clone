@@ -1,5 +1,6 @@
 class Restaurant < ActiveRecord::Base
   has_many :reviews
+  validates :name, presence: true
 
   def average_rating
     return "N/A" if reviews.length == 0
