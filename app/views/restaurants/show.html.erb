@@ -1,9 +1,9 @@
 <h1><%= link_to @restaurant.name, restaurant_path(@restaurant) %></h1>
-<%= render partial: 'shared/star_rating', locals: {restaurant: @restaurant} %>
+<%= render partial: 'shared/star_rating', locals: {rating: @restaurant.average_rating} %>
 <h3>Reviews</h3>
 <% if @restaurant.reviews.count == 0 %>
   No ratings yet, be the first to rate <%= link_to @restaurant.name, new_restaurant_review_path(@restaurant) %>.
 <% end %>
 <% @restaurant.reviews.each do |review| %>
-  <%= review.comment %> <%= render partial: 'shared/star_rating', locals: {restaurant: @restaurant} %>
+  <%= review.comment %> <%= render partial: 'shared/star_rating', locals: {rating: review.rating} %><br>
 <% end %>
