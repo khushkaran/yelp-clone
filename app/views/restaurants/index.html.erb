@@ -14,19 +14,30 @@
       <td class="average_rating"><%= render partial: 'shared/star_rating', locals: {rating: restaurant.average_rating} %></td>
       <td><%= restaurant.last_comment %></td>
       <td><div class="btn-group">
-        <%= link_to "Edit", edit_restaurant_path(restaurant), {class: "btn btn-default"} %>
-        <%= link_to "Delete", restaurant_path(restaurant), {class: "btn btn-default", method: :delete, data: {confirm: "Are you sure?"}} %>
-        <%= link_to "Review", new_restaurant_review_path(restaurant), {class: "btn btn-default"} %>
+        <%= link_to "Review", new_restaurant_review_path(restaurant), {class: "btn btn-success"} %>
+        <%= link_to "Edit", edit_restaurant_path(restaurant), {class: "btn btn-warning"} %>
+        <%= link_to "Delete", restaurant_path(restaurant), {class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"}} %>
       </div></td>
     </tr>
   <% end %>
 </table>
 <div class="recent-comments">
+  <h4>Recent Reviews</h4>
   <% @reviews.each do |review| %>
     <% this_restaurant = Restaurant.find review.restaurant_id %>
-    <%= review.comment %> -
-    <%= this_restaurant.name %> Created at 
-    <%= review.created_at %><br>
+    <div class="row">
+      <div class="col-md-2">
+        <%= render partial: 'shared/star_rating', locals: {rating: review.rating} %>
+      </div>
+
+      <div class="col-md-5"><%= review.comment %> -</div>
+
+      <div class="col-md-2"><%= this_restaurant.name %></div>
+
+      <div class="col-md-3">
+        <small>created at <%= review.created_at %></small><br>
+      </div>
+    </div>
   <% end %>
 </div>
 <% end %>

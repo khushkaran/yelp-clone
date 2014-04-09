@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.all.sort_by(&:average_rating).reverse
     @reviews = Review.order('created_at DESC').limit(5)
   end
 

@@ -72,6 +72,14 @@ describe 'the restaurants index page' do
         visit '/restaurants'
         expect(page).to have_css '.recent-comments', :text => "Food was OK"
       end
+
+      it "ranks restaurants by average rating" do
+        kfc = Restaurant.create(name: 'KFC')
+        kfc.reviews.create(rating: 5, comment: 'Amazing!')
+        visit '/restaurants'
+        expect(page).to have_css 'table tr:nth-of-type(1) td:nth-of-type(1)', :text => "KFC"
+        expect(page).to have_css 'table tr:nth-of-type(2) td:nth-of-type(1)', :text => "McDonalds"
+      end
     end
   end
 
