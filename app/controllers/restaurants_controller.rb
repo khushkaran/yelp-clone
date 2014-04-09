@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
-    @reviews = Review.order('created_at DESC').limit(2)
+    @reviews = Review.order('created_at DESC').limit(5)
   end
 
   def new
@@ -9,8 +9,16 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    Restaurant.create restaurant_params
-    redirect_to '/restaurants'
+    @restaurant = Restaurant.new restaurant_params
+    if @restaurant.save
+      flash[:success] = "Restaurant created successfully"
+      redirect_to '/restaurants'
+    else
+      @restaurant.errors.full_messages.each do |msg|
+        flash[:error] = msg
+      end
+      render 'new'
+    end
   end
 
   def edit
@@ -24,6 +32,7 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find params[:id]
     @restaurant.update restaurant_params
+    flash[:success] = "Restaurant updated successfully"
     redirect_to '/restaurants'
   end
 
