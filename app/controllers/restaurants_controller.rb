@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   def index
     @restaurants = Restaurant.all.sort_by(&:average_rating).reverse
     @reviews = Review.order('created_at DESC').limit(5)

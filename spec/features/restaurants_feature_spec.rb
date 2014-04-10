@@ -8,15 +8,29 @@ describe 'the restaurants index page' do
     end
 
     describe "adding a restaurant" do
-      it "should be listed on the index" do
-      	visit '/restaurants'
-      	click_link 'Add a restaurant'
-      	fill_in "Name", with: "McDonalds"
-      	fill_in "Category", with: "Fast food"
-      	fill_in "Location", with: "Everywhere"
-      	click_button "Create Restaurant"
+      context "whilst NOT logged in" do
+        it "should allow user to add a restaurant" do
+          visit '/restaurants'
+          click_link 'Add a restaurant'
 
-      	expect(page).to have_content 'McDonalds'
+          expect(page).not_to have_field 'Name'
+          expect(page).to have_content 'You need to sign in or sign up before continuing.'
+        end
+      end
+
+      context "whilst logged in" do
+        it "should be listed on the index" do
+          user = User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678')
+          login_as(user)
+        	visit '/restaurants'
+        	click_link 'Add a restaurant'
+        	fill_in "Name", with: "McDonalds"
+        	fill_in "Category", with: "Fast food"
+        	fill_in "Location", with: "Everywhere"
+        	click_button "Create Restaurant"
+
+        	expect(page).to have_content 'McDonalds'
+        end
       end
     end
   end
