@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Restaurant average_rating" do
-  let(:restaurant) { Restaurant.create(name: 'McDonalds') } 
+  let(:restaurant) { create(:restaurant) } 
   context "with no ratings" do
     it "expect to return no reviews" do
       expect(restaurant.average_rating).to eq 0 
@@ -25,7 +25,7 @@ describe "Restaurant average_rating" do
 end
 
 describe "Restaurant last_comment" do
-  let(:restaurant) { Restaurant.create(name: 'McDonalds') } 
+  let(:restaurant) { create(:restaurant) } 
   context "with no ratings" do
     it "expect to return nothing" do
       expect(restaurant.last_comment).to eq "" 
@@ -54,11 +54,11 @@ describe 'validations' do
       restaurant = Restaurant.new(name: nil)
       expect(restaurant).to have(1).errors_on(:name)
     end
-    xit "restaurant location" do
+    it "restaurant location" do
       restaurant = Restaurant.new(location: nil)
       expect(restaurant).to have(1).errors_on(:location)
     end
-    xit "restaurant category" do
+    it "restaurant category" do
       restaurant = Restaurant.new(category: nil)
       expect(restaurant).to have(1).errors_on(:category)
     end
