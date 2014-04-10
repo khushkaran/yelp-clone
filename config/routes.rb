@@ -1,11 +1,14 @@
 YelpClone::Application.routes.draw do
-  get "reviews/new"
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  root "restaurants#index"
 
   resources :restaurants do
     resources :reviews
   end
+
+  get "reviews/new"
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
