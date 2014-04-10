@@ -22,6 +22,7 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   config.include Warden::Test::Helpers
+  config.include FactoryGirl::Syntax::Methods
   Warden.test_mode!
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

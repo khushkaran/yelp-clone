@@ -20,7 +20,7 @@ describe 'the restaurants index page' do
 
       context "whilst logged in" do
         it "should be listed on the index" do
-          user = User.create(email: 'a@a.com', password: '12345678', password_confirmation: '12345678')
+          user = create(:user)
           login_as(user)
         	visit '/restaurants'
         	click_link 'Add a restaurant'
@@ -37,7 +37,7 @@ describe 'the restaurants index page' do
 
   context "a restaurant has been added" do
     before(:each) do
-      @restaurant = Restaurant.create(name: 'McDonalds')
+      create(:bad_review)
     end
     it "should edit a restaurant record" do
       visit '/restaurants'
@@ -65,31 +65,28 @@ describe 'the restaurants index page' do
       expect(page).to have_css '.average_rating span', :count => 5
     end
 
-    it "should allow the viewing of the last comment" do
-      Restaurant.first.reviews.create(comment: "Amazing!", rating: 5)
-      visit '/restaurants'
-      expect(page).to have_content 'Amazing!'
-    end
     
     context "with reviews posted" do
-      before do
-        @restaurant.reviews.create(rating: 3, comment: 'Food was OK')
+      before(:each) do
+        create(:great_review)
+      end
+      it "should allow the viewing of the last comment" do
+        visit '/restaurants'
+        expect(page).to have_content 'Amazing!'
       end
 
       it "individual restaurants display the reviews" do
         visit '/restaurants'
         click_link "McDonalds"
-        expect(page).to have_content "Food was OK"
+        expect(page).to have_content "Terrible"
       end
 
       it "should display the most recent review on the homepage" do
         visit '/restaurants'
-        expect(page).to have_css '.recent-comments', :text => "Food was OK"
+        expect(page).to have_css '.recent-comments', :text => "Terrible"
       end
 
       it "ranks restaurants by average rating" do
-        kfc = Restaurant.create(name: 'KFC')
-        kfc.reviews.create(rating: 5, comment: 'Amazing!')
         visit '/restaurants'
         expect(page).to have_css 'table tr:nth-of-type(1) td:nth-of-type(1)', :text => "KFC"
         expect(page).to have_css 'table tr:nth-of-type(2) td:nth-of-type(1)', :text => "McDonalds"
