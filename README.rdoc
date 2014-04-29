@@ -1,28 +1,26 @@
-== README
+Yelp-Clone
+---
+![](screenshot.png?raw=true)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Week 8 project @makersacademy set by @alexpeattie
+to develop a Yelp-clone using Rails, HTML and JavaScript.
+Only registered users could add a new restaurant or review
+a restaurant. We work out the average of the reviews and
+display the "Star" rating using a graphical interface.
 
-Things you may want to cover:
+### Technologies
+* Ruby
+* Rails
+* jQuery
+* Bootstrap
+* JavaScript
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#####Testing
+* RSpec
+* Capybara
+* Factory Girl
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Instructions
+To run the application run `bin/rails s` and visit
+`localhost:3000` in the browser.
